@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\mqtt\mqtt.async.c" />
+    <ClCompile Include="..\src\mqtt\mqtt.c" />
+    <ClCompile Include="..\src\mqtt\mqtt.msg.c" />
+    <ClCompile Include="..\src\mqtt\mqtt.qos.c" />
+    <ClCompile Include="..\src\mqtt\mqtt.recv.c" />
+    <ClCompile Include="..\src\tr50.api.async.c" />
+    <ClCompile Include="..\src\tr50.c" />
+    <ClCompile Include="..\src\tr50.command.c" />
+    <ClCompile Include="..\src\tr50.config.c" />
+    <ClCompile Include="..\src\tr50.mailbox.c" />
+    <ClCompile Include="..\src\tr50.message.c" />
+    <ClCompile Include="..\src\tr50.method.c" />
+    <ClCompile Include="..\src\tr50.payload.c" />
+    <ClCompile Include="..\src\tr50.pending.c" />
+    <ClCompile Include="..\src\tr50.stats.c" />
+    <ClCompile Include="..\src\tr50.worker.c" />
+    <ClCompile Include="..\src\tr50.worker.extended.c" />
+    <ClCompile Include="..\src\util\common\tr50.blob.c" />
+    <ClCompile Include="..\src\util\common\tr50.json.c" />
+    <ClCompile Include="..\src\util\win32\win32.blob.c" />
+    <ClCompile Include="..\src\util\win32\win32.compress.c" />
+    <ClCompile Include="..\src\util\win32\win32.event.c" />
+    <ClCompile Include="..\src\util\win32\win32.log.c" />
+    <ClCompile Include="..\src\util\win32\win32.memory.c" />
+    <ClCompile Include="..\src\util\win32\win32.mutex.c" />
+    <ClCompile Include="..\src\util\win32\win32.tcp.c" />
+    <ClCompile Include="..\src\util\win32\win32.tcp_proxy.c" />
+    <ClCompile Include="..\src\util\win32\win32.tcp_ssl.c" />
+    <ClCompile Include="..\src\util\win32\win32.thread.c" />
+    <ClCompile Include="..\src\util\win32\win32.time.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\tr50\error.h" />
+    <ClInclude Include="..\include\tr50\tr50.h" />
+    <ClInclude Include="..\include\tr50\util\blob.h" />
+    <ClInclude Include="..\include\tr50\util\compress.h" />
+    <ClInclude Include="..\include\tr50\util\dictionary.h" />
+    <ClInclude Include="..\include\tr50\util\event.h" />
+    <ClInclude Include="..\include\tr50\util\json.h" />
+    <ClInclude Include="..\include\tr50\util\log.h" />
+    <ClInclude Include="..\include\tr50\util\memory.h" />
+    <ClInclude Include="..\include\tr50\util\mutex.h" />
+    <ClInclude Include="..\include\tr50\util\platform.h" />
+    <ClInclude Include="..\include\tr50\util\swap.h" />
+    <ClInclude Include="..\include\tr50\util\tcp.h" />
+    <ClInclude Include="..\include\tr50\util\thread.h" />
+    <ClInclude Include="..\include\tr50\util\time.h" />
+    <ClInclude Include="..\include\tr50\worker.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4578A7F1-40F3-46C6-A36D-305CDCB81E5F}</ProjectGuid>
+    <RootNamespace>tr50</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>Debug\</OutDir>
+    <IntDir>Debug/$(ProjectName)\</IntDir>
+    <TargetName>tr50</TargetName>
+    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>EXPORT_TR50_SYMS;_WIN32;LITTLE_ENDIAN;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsC</CompileAs>
+      <DisableSpecificWarnings>4996;4267;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <ExceptionHandling>false</ExceptionHandling>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\OpenSSL-Win32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wsock32.lib;libeay32.lib;ssleay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)tr50.dll</OutputFile>
+      <ImportLibrary>$(OutDir)tr50.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

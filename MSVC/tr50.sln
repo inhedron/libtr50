@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tr50", "tr50.vcxproj", "{4578A7F1-40F3-46C6-A36D-305CDCB81E5F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tr50_sample", "tr50_sample\tr50_sample.vcxproj", "{5C3EFF96-5FD7-4826-89DC-1DCDAEE251CC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tr50_sysinfo", "tr50_sysinfo\tr50_sysinfo.vcxproj", "{F8D5CF2C-6899-42D0-9B1C-2A502532E8FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4578A7F1-40F3-46C6-A36D-305CDCB81E5F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4578A7F1-40F3-46C6-A36D-305CDCB81E5F}.Debug|Win32.Build.0 = Debug|Win32
+		{4578A7F1-40F3-46C6-A36D-305CDCB81E5F}.Release|Win32.ActiveCfg = Release|Win32
+		{4578A7F1-40F3-46C6-A36D-305CDCB81E5F}.Release|Win32.Build.0 = Release|Win32
+		{5C3EFF96-5FD7-4826-89DC-1DCDAEE251CC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5C3EFF96-5FD7-4826-89DC-1DCDAEE251CC}.Debug|Win32.Build.0 = Debug|Win32
+		{5C3EFF96-5FD7-4826-89DC-1DCDAEE251CC}.Release|Win32.ActiveCfg = Release|Win32
+		{5C3EFF96-5FD7-4826-89DC-1DCDAEE251CC}.Release|Win32.Build.0 = Release|Win32
+		{F8D5CF2C-6899-42D0-9B1C-2A502532E8FC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F8D5CF2C-6899-42D0-9B1C-2A502532E8FC}.Debug|Win32.Build.0 = Debug|Win32
+		{F8D5CF2C-6899-42D0-9B1C-2A502532E8FC}.Release|Win32.ActiveCfg = Release|Win32
+		{F8D5CF2C-6899-42D0-9B1C-2A502532E8FC}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

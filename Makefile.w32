@@ -1,0 +1,38 @@
+NAME = tr50
+
+FLAGS = -nologo /O2 /Zi /MD /D "_WIN32" /D "EXPORT_TR50_SYMS" /D "_NO_VA_ARGS" /Iinclude /I$(OPENSSL_PATH)/include
+LDFLAGS = /SUBSYSTEM:CONSOLE /DLL /DEBUG /PDB:$(NAME).pdb /LIBPATH:$(OPENSSL_PATH)/lib Ws2_32.lib libeay32.lib ssleay32.lib
+
+# NOTE: OBJECT FILE ITEMS LISTED BELOW MUST BE SEPARATED BY A SINGLE SPACE.
+OBJS = tr50.api.async.obj tr50.obj tr50.command.obj tr50.config.obj tr50.mailbox.obj tr50.message.obj tr50.method.obj tr50.payload.obj tr50.pending.obj tr50.stats.obj tr50.worker.obj tr50.worker.extended.obj
+OBJS_MQTT = mqtt.async.obj mqtt.obj mqtt.msg.obj mqtt.qos.obj mqtt.recv.obj
+OBJS_COMMON = tr50.blob.obj tr50.json.obj
+OBJS_UTIL = win32.blob.obj win32.compress.obj win32.event.obj win32.log.obj win32.memory.obj win32.mutex.obj win32.tcp.obj win32.tcp_proxy.obj win32.tcp_ssl.obj win32.thread.obj win32.time.obj
+
+all: $(NAME).dll
+
+$(NAME).dll: init objs/$(OBJS:.obj =.obj objs/) objs/mqtt/$(OBJS_MQTT:.obj =.obj objs/mqtt/) objs/util/common/$(OBJS_COMMON:.obj =.obj objs/util/common/) objs/util/win32/$(OBJS_UTIL:.obj =.obj objs/util/win32/)
+	rc /fo MSVC\tr50.res MSVC\tr50.rc 
+	link objs/$(OBJS:.obj =.obj objs/) objs/mqtt/$(OBJS_MQTT:.obj =.obj objs/mqtt/) objs/util/common/$(OBJS_COMMON:.obj =.obj objs/util/common/) objs/util/win32/$(OBJS_UTIL:.obj =.obj objs/util/win32/) MSVC\tr50.res $(LDFLAGS) /OUT:$@
+
+init:
+	-mkdir objs
+	-mkdir objs\mqtt
+	-mkdir objs\util
+	-mkdir objs\util\common
+	-mkdir objs\util\win32
+
+{src}.c.obj:
+	$(CC) $(FLAGS) -Fo$@ -c $<
+
+{src\mqtt}.c{objs\mqtt}.obj:
+	$(CC) $(FLAGS) -Fo$@ -c $<
+
+{src\util\common}.c{objs\util\common}.obj:
+	$(CC) $(FLAGS) -Fo$@ -c $<
+
+{src\util\win32}.c{objs\util\win32}.obj:
+	$(CC) $(FLAGS) -Fo$@ -c $<
+
+clean:
+	erase /S /Q objs *.dll *.lib *.exp *.pdb *.ilk

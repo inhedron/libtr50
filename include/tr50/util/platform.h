@@ -1,0 +1,80 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2014 ILS Technology, LLC
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+#undef _TR50_BIG_ENDIAN
+#define _TR50_LITTLE_ENDIAN 1
+
+#undef CROSS_ENDIAN_DOUBLES
+
+#if _MSC_VER
+#define snprintf _snprintf
+#endif
+
+#if defined (_WIN32)
+	#  define strtok_r strtok_s
+	#  include <ctype.h>
+#endif
+
+#if !defined(_TR50_BIG_ENDIAN)
+#  define swap16(n) (((((unsigned short)(n) & 0xFF)) << 8) | (((unsigned short)(n) & 0xFF00) >> 8))
+#  define swap32(n) (((((unsigned long)(n) & 0xFF)) << 24) | \
+                    ((((unsigned long)(n) & 0xFF00)) << 8) | \
+                    ((((unsigned long)(n) & 0xFF0000)) >> 8) | \
+                    ((((unsigned long)(n) & 0xFF000000)) >> 24))
+#  if defined(WIN32)
+#    define swap64(x) (((_int64)(swap32((int)((x << 32) >> 32))) << 32) | (unsigned int)swap32(((int)(x >> 32))))
+#    define swapdbl(x) (((_int64)(swap32((int)((x << 32) >> 32))) << 32) | (unsigned int)swap32(((int)(x >> 32))))
+#  elif defined(CROSS_ENDIAN_DOUBLES)
+#    define swap64(x) (((long long)(swap32((int)((x << 32) >> 32))) << 32) | (unsigned int)swap32(((int)(x >> 32))))
+#    define swapdbl(x) (((long long)(swap32(((int)(x >> 32)))) << 32) | (unsigned int)swap32((int)((x << 32) >> 32)))
+#  else
+#    define swap64(x) (((long long)(swap32((int)((x << 32) >> 32))) << 32) | (unsigned int)swap32(((int)(x >> 32))))
+#    define swapdbl(x) (((long long)(swap32((int)((x << 32) >> 32))) << 32) | (unsigned int)swap32(((int)(x >> 32))))
+#  endif
+#  define bswap16(n) n
+#  define bswap32(n) n
+#  define bswap64(n) n
+#  define bswapdbl(n) n
+#else
+#  define swap16(n) n
+#  define swap32(n) n
+#  define swap64(n) n
+#  define swapdbl(n) n
+#  define bswap16(n) (((((unsigned short)(n) & 0xFF)) << 8) | (((unsigned short)(n) & 0xFF00) >> 8))
+#  define bswap32(n) (((((unsigned long)(n) & 0xFF)) << 24) | \
+                     ((((unsigned long)(n) & 0xFF00)) << 8) | \
+                     ((((unsigned long)(n) & 0xFF0000)) >> 8) | \
+                     ((((unsigned long)(n) & 0xFF000000)) >> 24))
+#  define bswap64(n) (((long long)(bswap32((int)((n << 32) >> 32))) << 32) | (unsigned int)bswap32(((int)(n >> 32))))
+#  define bswapdbl(n) (((long long)(bswap32((int)((n << 32) >> 32))) << 32) | (unsigned int)bswap32(((int)(n >> 32))))
+
+#endif
+
+//Added
+#if !defined(TRUE)
+#  define TRUE 1
+#endif
+#if !defined(FALSE)
+#  define FALSE 0
+#endif

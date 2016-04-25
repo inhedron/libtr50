@@ -1,0 +1,15 @@
+Checkout all
+c:\MyFolder> cleartool
+cleartool> co -c "Reason for massive checkout" .../*
+
+Checkin 
+ct lsco -r -cvi -fmt "ci -nc \"%n\"\n" | ct
+ct lsco -r -cvi -fmt "unco -rm %n\n" | ct
+
+CC To git
+xcopy /W /C /S /Y T:\msw_cat_src\cat\src\telit\dw\src\*.* c:\source\dwcore\tr50\src
+xcopy /W /C /S /Y T:\msw_cat_src\cat\src\telit\dw\inc\*.* c:\source\dwcore\tr50\
+
+git to CC
+xcopy /W /C /S /Y c:\source\dwcore\tr50\src\*.* T:\msw_cat_src\cat\src\telit\dw\src
+xcopy /W /C /S /Y c:\source\dwcore\tr50\tr50 T:\msw_cat_src\cat\src\telit\dw\inc

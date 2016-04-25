@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="util">
+      <UniqueIdentifier>{02d1e1e4-baf0-4578-bc39-446c373063d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mqtt">
+      <UniqueIdentifier>{1bb01fc7-2775-49b1-8e90-ac911b635eb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{c18f4bc4-cb3d-4b6e-bac2-e2842c9a980c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\tr50.api.async.c" />
+    <ClCompile Include="..\src\tr50.c" />
+    <ClCompile Include="..\src\tr50.command.c" />
+    <ClCompile Include="..\src\tr50.config.c" />
+    <ClCompile Include="..\src\tr50.mailbox.c" />
+    <ClCompile Include="..\src\tr50.message.c" />
+    <ClCompile Include="..\src\tr50.payload.c" />
+    <ClCompile Include="..\src\tr50.pending.c" />
+    <ClCompile Include="..\src\tr50.stats.c" />
+    <ClCompile Include="..\src\tr50.worker.c" />
+    <ClCompile Include="..\src\tr50.worker.extended.c" />
+    <ClCompile Include="..\src\mqtt\mqtt.async.c">
+      <Filter>mqtt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mqtt\mqtt.c">
+      <Filter>mqtt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mqtt\mqtt.msg.c">
+      <Filter>mqtt</Filter>
+    </ClCompile>
+	<ClCompile Include="..\src\mqtt\mqtt.qos.c">
+      <Filter>mqtt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\mqtt\mqtt.recv.c">
+      <Filter>mqtt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\win32\win32.blob.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\win32\win32.compress.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\win32\win32.event.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\win32\win32.log.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\win32\win32.memory.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\win32\win32.mutex.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\win32\win32.tcp.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\win32\win32.tcp_proxy.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\win32\win32.tcp_ssl.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\win32\win32.thread.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\win32\win32.time.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\common\tr50.blob.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\util\common\tr50.json.c">
+      <Filter>util</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\tr50\error.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\util\json.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\tr50.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\worker.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\util\blob.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\util\compress.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\util\dictionary.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\util\event.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\util\log.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\util\memory.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\util\mutex.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\util\platform.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\util\swap.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\util\tcp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\util\thread.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tr50\util\time.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

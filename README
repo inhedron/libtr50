@@ -1,0 +1,118 @@
+TR50 Library 
+============
+
+NOTE: To use this library you must have an active account on a platform 
+powered by deviceWISE.  If you would like to signup for a free 
+developer account, please goto https://open.devicewise.com and click
+the "Create Account" link on the login page of the platform.
+setup with the proper environment. Please Refer to the Open Portal 
+Demo Setup section described later in this document.
+
+Pre-Requisites
+--------------
+- You must already have an account on an AEP platform powered by deviceWISE.
+- You must have already completed the Getting Started Guide for Developers
+    - URL: http://help.devicewise.com/display/M2MOpen/Getting+Started+for+Developers
+- If you are unsure where to start, familiarize yourself with the platform by
+  following the Getting Started Guide for Gateways found here:
+  http://help.devicewise.com/display/M2MOpen/Getting+Started+with+Gateways
+
+Minimum system requirements supported 
+-------------------------------------
+
+TR50 Library Dependencies by Platform
+- Linux 
+    - Multi-threaded, 32 and 64 bit Linux platform 
+    - OpenSSL 1.0.1 development packaged installed 
+        - Install RPM-based (RHEL, CentOS, etc) : #yum install openssl openssl-devel
+        - Install APT-based (Ubuntu etc): #apt-get install openssl libssl-devel 
+    - GNU-C compiler.
+- Windows (32 and 64 bit Windows 7+ platform)
+    - Visual Studio 2013 
+    - OpenSSL 1.0.1 installed in C:\OpenSSL-Win32
+
+	
+Adding support for other operating systems 
+------------------------------------------
+
+The TR50 library code utilizes many common functions that fall outside the scope
+of the standard C library, such as sockets, threads, mutexes, etc.  If you wish to add
+support for a new operating system, you must create a wrapper for the operating system's
+implementation of these common functions.  There is a 'stub' directory implementation 
+that can be used as an example to add these OS-specific overrides for an unsupported 
+(multi-threaded) platform. The stub directory can be updated to include the 
+platform specific libraries as well as updating the makefiles for the new system.
+
+Running with the provided makefiles and System libraries may be successful 
+on unsupported platforms, however, it is important to note that issues can be 
+encountered on these platforms and should be used at your own risk.
+
+Getting Started (Linux)
+-----------------------
+
+1. Extract the compressed file into your working environment 
+
+2. Execute the following commands at the shell to build the library and examples:
+#cd working_directory 
+#./configure --with-examples 
+#make 
+
+3. Execute the following commands to run the basic sample:
+export LD_LIBRARY_PATH=lib:$LD_LIBRARY_PATH 
+#./examples/example_basic [mqtt_endpoint] [mqtt_port] [app_token] [thing_key] 
+
+4. Execute the following commands to run the sysinfo example:
+#./examples/example_sysinfo [mqtt_endpoint] [mqtt_port] [app_token] [thing_key] 
+
+Getting Started (Windows)
+---------------------
+
+1. Extract the compressed file into your working environment
+
+2. Start Visual Studio 2013 and open the MSVC project file from <working directory>/tr50_c/MSVC/tr50.vcxproj
+
+3. Set your start-up project to tr50 and run the Build on the solution file. 
+
+4. Open a command prompt and change directories to <working directory>\source\tr50_c\MSVC\Debug
+
+5. Execute the following command to run the basic sample program: 
+#example_basic [mqtt_endpoint] [mqtt_port] [app_token] [thing_key] 
+
+6. Execute the following command to run the sysinfo sample program:
+#example_sysinfo [mqtt_endpoint] [mqtt_port] [app_token] [thing_key] 
+
+Although the makefiles for a WINDOWS command line build are provided, they are not supported
+and the Visual Studio project files should be used instead.
+
+Example Program Setup 
+-----------------------
+
+Follow the steps below to configure your account to receive data from the sample applications.
+
+1. Login to the Management Portal.
+   - Additional Help: https://open.devicewise.com
+2. Retrieve your MQTT Endpoint from the Developer section of the Management Portal.
+   - Additional Help: http://help.devicewise.com/display/M2MOpen/Gateway+Part+2+-+Asset+Gateway+and+Workbench+setup
+3. Retrieve your Application Token from the Applications page.
+   - Additional Help: http://help.devicewise.com/display/M2MOpen/Managing+applications
+4. Click "New thing" to add a new thing.
+   - Additional Help: http://help.devicewise.com/display/M2MOpen/Defining+a+thing
+   - Set "Thing Definition" to "Default"
+   - Set "key" to "sampletr50thing"
+   - Set "name" to "Sample TR50 Thing"
+   - Click "Add" to add the new thing.
+5. Modify the "Default" Thing Definition as follows:
+   - Enable property and attribute auto-definition
+   - Add an alarm called "alarm1" with 3 states [0,1,2]
+   - Add a method with key "overheating", name "Overheating" and the following notification variables:
+	- Name: Temperature (Key:temperature, Count:1, Name:Temperature, type:float, UI Type:Text Box)
+	- Name: Result (Key:result, Count:1, Name:Result, type:string, Length:128, UI Type:Text Box)
+
+
+Example Error Codes
+-------------------
+
+Any errors encountered within the examples could be generated internally by the TR50 library or returned from the M2M Service.
+Failures relating to the TR50 library will be reported as return codes.  The expected return codes are listed in 
+the "error.h" include file in your <working directory\include\tr50\error.h>
+Failures related to the M2M Service can be decoded by login into the Management Portal and verifying the API Logs.

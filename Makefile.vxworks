@@ -1,0 +1,49 @@
+ifeq ($(VXCPU),)
+VXCPU=SIMPENTIUMgnu
+endif
+
+ifeq ($(VXTYPE),)
+VXTYPE=RTP
+endif
+
+TOOL_FAMILY=gnu
+
+include Makefile
+
+include $(WIND_USR)/tool/gnu/make.$(VXCPU)
+
+AR += cq
+FLAGS += $(DEFINE_CC) $(CC_ARCH_SPEC) -MD -MP -D_VX_CPU=_VX_$(CPU) -D_VX_TOOL_FAMILY=gnu -D_VX_TOOL=$(TOOL)
+ifeq ($(VXTYPE),RTP)
+FLAGS += -mrtp -I$(WIND_USR)/h -I$(WIND_USR)/h/wrn/coreip
+else
+FLAGS += -D_WRS_KERNEL -I$(WIND_BASE)/target/h -I$(WIND_BASE)/target/h/wrn/coreip
+endif
+
+ifeq ($(VXTYPE),RTP)
+LIB_LDFLAGS += -L$(WIND_USR)/lib/$(VX_CPU_FAMILY)/$(CPU)/$(TOOL_COMMON_DIR)/PIC
+endif
+
+ifeq ($(WIND_PLATFORM),vxworks-6.6)
+FLAGS += -mlongcall -fsigned-char -D_MUTEX_AS_RWLOCK
+endif
+
+ifeq ($(SSL),openssl)
+LIB_LIBS = -lz -Wl,-dn -lssl -lcrypto -Wl,-dy
+else
+LIB_LIBS = -lz -Wl,-dn -Wl,-dy
+endif
+
+vxinit :
+ifeq ($(VXTYPE),RTP)
+ifeq ($(SSL),openssl)
+	cp ils/internal/config.h.vxworks_rtp.openssl ils/internal/config.h
+else
+	cp ils/internal/config.h.vxworks_rtp ils/internal/config.h
+endif	
+else
+	cp ils/internal/config.h.vxworks_knl ils/internal/config.h
+endif
+
+vxinit_knl :
+	cp ils/internal/config.h.vxworks_knl ils/internal/config.h

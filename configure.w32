@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cp -f Makefile.w32 Makefile
+
+exit 0
